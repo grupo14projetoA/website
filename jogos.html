@@ -5,7 +5,6 @@
   <title>Jogos – Sopa de Letras</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Estilos específicos da sopa de letras (podem ficar aqui ou ir para o style.css) */
     .sopa-container {
       display: flex;
       flex-direction: column;
@@ -16,6 +15,7 @@
     .sopa-grid {
       border-collapse: collapse;
       margin-top: 10px;
+      user-select: none;
     }
 
     .sopa-grid td {
@@ -26,8 +26,22 @@
       border: 1px solid #cbd5e1;
       font-weight: 600;
       text-transform: uppercase;
-      cursor: default;
+      cursor: pointer;
       background-color: #f8fafc;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .sopa-grid td.selecionado {
+      background-color: #bfdbfe;
+    }
+
+    .sopa-grid td.certo {
+      background-color: #22c55e;
+      color: #ffffff;
+    }
+
+    .sopa-grid td.errado {
+      background-color: #fecaca;
     }
 
     .lista-palavras {
@@ -48,11 +62,47 @@
       color: #1f4f7b;
     }
 
+    .lista-palavras span.encontrada {
+      background: #22c55e;
+      color: #ffffff;
+    }
+
     .dica {
       font-size: 0.9rem;
       color: #6b7280;
       text-align: center;
       margin-top: 6px;
+    }
+
+    .botoes-jogo {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .botoes-jogo button {
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: none;
+      background: #1f4f7b;
+      color: #ffffff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    .botoes-jogo button:hover {
+      background: #2b74c8;
+      transform: translateY(-1px);
+    }
+
+    .mensagem {
+      margin-top: 8px;
+      font-size: 0.95rem;
+      text-align: center;
+      font-weight: 600;
     }
   </style>
 </head>
@@ -71,72 +121,28 @@
 
 <main>
   <section>
-    <h2>Jogo – Sopa de Letras</h2>
+    <h2>Jogo – Sopa de Letras Interativa</h2>
     <p>
-      Procura na sopa de letras palavras relacionadas com a indústria têxtil na Revolução Industrial.
-      As palavras podem estar na horizontal, vertical ou ao contrário.
+      Clica nas letras para formar palavras relacionadas com a indústria têxtil.  
+      Quando terminares, carrega em <strong>Verificar</strong> para ver a grelha com as respostas a verde.
     </p>
 
     <div class="sopa-container">
-      <!-- Sopa de letras: 12x12 -->
-      <table class="sopa-grid">
-        <tbody>
-          <tr>
-            <td>F</td><td>A</td><td>B</td><td>R</td><td>I</td><td>C</td><td>A</td><td>S</td><td>Q</td><td>U</td><td>E</td><td>M</td>
-          </tr>
-          <tr>
-            <td>L</td><td>A</td><td>N</td><td>Ç</td><td>A</td><td>D</td><td>E</td><td>I</td><td>R</td><td>A</td><td>O</td><td>P</td>
-          </tr>
-          <tr>
-            <td>T</td><td>E</td><td>C</td><td>E</td><td>L</td><td>A</td><td>G</td><td>E</td><td>M</td><td>N</td><td>L</td><td>A</td>
-          </tr>
-          <tr>
-            <td>S</td><td>P</td><td>I</td><td>N</td><td>N</td><td>I</td><td>N</td><td>G</td><td>J</td><td>E</td><td>N</td><td>N</td>
-          </tr>
-          <tr>
-            <td>M</td><td>U</td><td>L</td><td>E</td><td>X</td><td>R</td><td>O</td><td>F</td><td>I</td><td>O</td><tdS</td><td>T</td>
-          </tr>
-          <tr>
-            <td>T</td><td>R</td><td>A</td><td>B</td><td>A</td><td>L</td><td>H</td><td>O</td><td>I</td><td>N</td><td>F</td><td>A</td>
-          </tr>
-          <tr>
-            <td>C</td><td>R</td><td>I</td><td>A</td><td>N</td><td>Ç</td><td>A</td><td>S</td><td>D</td><td>V</td><td>E</td><td>L</td>
-          </tr>
-          <tr>
-            <td>L</td><td>U</td><td>D</td><td>I</td><td>T</td><td>A</td><td>S</td><td>G</td><td>H</td><td>E</td><td>A</td><td>C</td>
-          </tr>
-          <tr>
-            <td>R</td><td>E</td><td>V</td><td>O</td><td>L</td><td>U</td><td>Ç</td><td>Ã</td><td>O</td><td>R</td><td>I</td><td>A</td>
-          </tr>
-          <tr>
-            <td>I</td><td>N</td><td>D</td><td>Ú</td><td>S</td><td>T</td><td>R</td><td>I</td><td>A</td><td>T</td><td>E</td><td>X</td>
-          </tr>
-          <tr>
-            <td>T</td><td>E</td><td>X</td><td>T</td><td>I</td><td>L</td><td>P</td><td>O</td><td>L</td><td>U</td><td>I</td><td>Ç</td>
-          </tr>
-          <tr>
-            <td>A</td><td>L</td><td>G</td><td>O</td><td>D</td><td>Ã</td><td>O</td><td>N</td><td>M</td><td>Q</td><td>S</td><td>R</td>
-          </tr>
-        </tbody>
-      </table>
+      <table class="sopa-grid" id="sopaGrid"></table>
 
-      <div class="lista-palavras">
-        <span>FÁBRICAS</span>
-        <span>LANÇADEIRA</span>
-        <span>TECELAGEM</span>
-        <span>SPINNING JENNY</span>
-        <span>MULE</span>
-        <span>TRABALHO</span>
-        <span>CRIANÇAS</span>
-        <span>LUDITAS</span>
-        <span>REVOLUÇÃO</span>
-        <span>INDÚSTRIA TÊXTIL</span>
-        <span>ALGODÃO</span>
+      <div class="lista-palavras" id="listaPalavras"></div>
+
+      <div class="botoes-jogo">
+        <button id="btnVerificar">Verificar</button>
+        <button id="btnNovo">Novo jogo</button>
+        <button id="btnLimpar">Limpar seleção</button>
       </div>
 
       <p class="dica">
-        Dica: podes imprimir esta página e circular as palavras com uma caneta.
+        Dica: as palavras podem estar na horizontal ou vertical, e algumas podem estar ao contrário.
       </p>
+
+      <p class="mensagem" id="mensagem"></p>
     </div>
   </section>
 </main>
@@ -144,5 +150,301 @@
 <footer>
   <p>Website educativo criado por [o teu nome].</p>
 </footer>
+
+<script>
+  // Palavras base (sem acentos, para ser mais simples de verificar)
+  const PALAVRAS_BASE = [
+    "FABRICA",
+    "TEAR",
+    "ALGODAO",
+    "REVOLUCAO",
+    "LUDITAS",
+    "CRIANCA",
+    "TRABALHO",
+    "FIO",
+    "MULE",
+    "JENNY"
+  ];
+
+  const GRID_SIZE = 12;
+  let grid = [];
+  let selecionadas = [];
+  let palavrasPosicionadas = [];
+  let palavrasAtuais = [];
+
+  const gridEl = document.getElementById("sopaGrid");
+  const listaEl = document.getElementById("listaPalavras");
+  const msgEl = document.getElementById("mensagem");
+  const btnVerificar = document.getElementById("btnVerificar");
+  const btnNovo = document.getElementById("btnNovo");
+  const btnLimpar = document.getElementById("btnLimpar");
+
+  // Função para gerar um número aleatório entre min e max (inclusive)
+  function randInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  // Embaralha array
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = randInt(0, i);
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  // Cria grelha vazia
+  function criarGrelhaVazia() {
+    grid = [];
+    for (let r = 0; r < GRID_SIZE; r++) {
+      const linha = [];
+      for (let c = 0; c < GRID_SIZE; c++) {
+        linha.push("");
+      }
+      grid.push(linha);
+    }
+  }
+
+  // Tenta colocar uma palavra na grelha
+  function colocarPalavra(palavra) {
+    const direcoes = shuffle(["H", "V"]); // H = horizontal, V = vertical
+    const podeInverter = Math.random() < 0.5;
+    let palavraColocar = palavra;
+
+    if (podeInverter) {
+      palavraColocar = palavra.split("").reverse().join("");
+    }
+
+    for (const dir of direcoes) {
+      let tentativas = 0;
+      while (tentativas < 50) {
+        tentativas++;
+        let row, col;
+
+        if (dir === "H") {
+          row = randInt(0, GRID_SIZE - 1);
+          col = randInt(0, GRID_SIZE - palavraColocar.length);
+        } else {
+          row = randInt(0, GRID_SIZE - palavraColocar.length);
+          col = randInt(0, GRID_SIZE - 1);
+        }
+
+        // Verificar se cabe
+        let cabe = true;
+        for (let i = 0; i < palavraColocar.length; i++) {
+          const r = dir === "H" ? row : row + i;
+          const c = dir === "H" ? col + i : col;
+          const letraAtual = grid[r][c];
+
+          if (letraAtual !== "" && letraAtual !== palavraColocar[i]) {
+            cabe = false;
+            break;
+          }
+        }
+
+        if (!cabe) continue;
+
+        // Colocar
+        for (let i = 0; i < palavraColocar.length; i++) {
+          const r = dir === "H" ? row : row + i;
+          const c = dir === "H" ? col + i : col;
+          grid[r][c] = palavraColocar[i];
+        }
+
+        palavrasPosicionadas.push({
+          palavra,
+          palavraColocar,
+          row,
+          col,
+          dir
+        });
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // Preenche espaços vazios com letras aleatórias
+  function preencherLetrasAleatorias() {
+    const letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    for (let r = 0; r < GRID_SIZE; r++) {
+      for (let c = 0; c < GRID_SIZE; c++) {
+        if (grid[r][c] === "") {
+          grid[r][c] = letras[randInt(0, letras.length - 1)];
+        }
+      }
+    }
+  }
+
+  // Renderiza grelha no HTML
+  function renderGrid() {
+    gridEl.innerHTML = "";
+    for (let r = 0; r < GRID_SIZE; r++) {
+      const tr = document.createElement("tr");
+      for (let c = 0; c < GRID_SIZE; c++) {
+        const td = document.createElement("td");
+        td.textContent = grid[r][c];
+        td.dataset.row = r;
+        td.dataset.col = c;
+        td.addEventListener("click", clicarCelula);
+        tr.appendChild(td);
+      }
+      gridEl.appendChild(tr);
+    }
+  }
+
+  // Renderiza lista de palavras
+  function renderPalavras() {
+    listaEl.innerHTML = "";
+    palavrasAtuais.forEach(p => {
+      const span = document.createElement("span");
+      span.textContent = p;
+      span.dataset.palavra = p;
+      listaEl.appendChild(span);
+    });
+  }
+
+  function limparSelecaoVisual() {
+    const tds = gridEl.querySelectorAll("td");
+    tds.forEach(td => {
+      td.classList.remove("selecionado", "errado", "certo");
+    });
+    const spans = listaEl.querySelectorAll("span");
+    spans.forEach(s => s.classList.remove("encontrada"));
+    msgEl.textContent = "";
+  }
+
+  function clicarCelula(e) {
+    const td = e.target;
+    const key = td.dataset.row + "-" + td.dataset.col;
+    const idx = selecionadas.indexOf(key);
+
+    if (idx === -1) {
+      selecionadas.push(key);
+      td.classList.add("selecionado");
+    } else {
+      selecionadas.splice(idx, 1);
+      td.classList.remove("selecionado");
+    }
+  }
+
+  function verificarSelecao() {
+    // Limpa estados anteriores (mas mantém "selecionado" para feedback)
+    const tds = gridEl.querySelectorAll("td");
+    tds.forEach(td => {
+      td.classList.remove("errado", "certo");
+    });
+    msgEl.textContent = "";
+
+    // Calcula todas as palavras possíveis criadas pela seleção
+    const selecionadasPorLinha = {};
+    const selecionadasPorColuna = {};
+
+    selecionadas.forEach(key => {
+      const [r, c] = key.split("-").map(Number);
+      if (!selecionadasPorLinha[r]) selecionadasPorLinha[r] = [];
+      if (!selecionadasPorColuna[c]) selecionadasPorColuna[c] = [];
+      selecionadasPorLinha[r].push(c);
+      selecionadasPorColuna[c].push(r);
+    });
+
+    const palavrasEncontradas = new Set();
+    const letrasCorretas = new Set();
+
+    function processarGrupo(grupo, horizontal = true) {
+      for (const k in grupo) {
+        const indices = grupo[k].sort((a, b) => a - b);
+        let atual = "";
+        let coords = [];
+
+        for (let i = 0; i < indices.length; i++) {
+          const idx = indices[i];
+          const row = horizontal ? Number(k) : idx;
+          const col = horizontal ? idx : Number(k);
+          const letra = grid[row][col];
+          atual += letra;
+          coords.push({ row, col });
+
+          const atualUpper = atual.toUpperCase();
+
+          // Verificar se alguma palavra colocada bate com este pedaço (normal ou invertido)
+          palavrasPosicionadas.forEach(info => {
+            const alvo = info.palavraColocar.toUpperCase();
+            if (atualUpper.endsWith(alvo) || atualUpper.split("").reverse().join("").endsWith(alvo)) {
+              palavrasEncontradas.add(info.palavra);
+              // Marcar letras desta sequência como corretas
+              const tam = alvo.length;
+              const usados = coords.slice(-tam);
+              usados.forEach(pos => {
+                letrasCorretas.add(pos.row + "-" + pos.col);
+              });
+            }
+          });
+        }
+      }
+    }
+
+    processarGrupo(selecionadasPorLinha, true);
+    processarGrupo(selecionadasPorColuna, false);
+
+    // Destacar letras corretas e erradas
+    tds.forEach(td => {
+      const key = td.dataset.row + "-" + td.dataset.col;
+      if (letrasCorretas.has(key)) {
+        td.classList.add("certo");
+        td.classList.remove("selecionado");
+      } else if (selecionadas.includes(key)) {
+        td.classList.add("errado");
+        td.classList.remove("selecionado");
+      }
+    });
+
+    // Destacar palavras encontradas na lista
+    const spans = listaEl.querySelectorAll("span");
+    spans.forEach(span => {
+      if (palavrasEncontradas.has(span.dataset.palavra)) {
+        span.classList.add("encontrada");
+      }
+    });
+
+    if (palavrasEncontradas.size === 0) {
+      msgEl.textContent = "Ainda não encontraste nenhuma palavra completa. Continua a tentar!";
+      msgEl.style.color = "#b91c1c";
+    } else if (palavrasEncontradas.size < palavrasAtuais.length) {
+      msgEl.textContent = "Boa! Já encontraste: " + Array.from(palavrasEncontradas).join(", ");
+      msgEl.style.color = "#15803d";
+    } else {
+      msgEl.textContent = "Excelente! Encontraste todas as palavras!";
+      msgEl.style.color = "#16a34a";
+    }
+  }
+
+  function novoJogo() {
+    selecionadas = [];
+    palavrasPosicionadas = [];
+    msgEl.textContent = "";
+
+    // Escolhe aleatoriamente algumas palavras
+    palavrasAtuais = shuffle([...PALAVRAS_BASE]).slice(0, 7);
+
+    criarGrelhaVazia();
+    palavrasAtuais.forEach(p => colocarPalavra(p));
+    preencherLetrasAleatorias();
+    renderGrid();
+    renderPalavras();
+  }
+
+  btnVerificar.addEventListener("click", verificarSelecao);
+  btnNovo.addEventListener("click", () => {
+    novoJogo();
+  });
+  btnLimpar.addEventListener("click", () => {
+    selecionadas = [];
+    limparSelecaoVisual();
+  });
+
+  // Inicia o jogo quando a página carrega
+  novoJogo();
+</script>
 </body>
 </html>
