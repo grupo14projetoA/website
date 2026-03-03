@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>Jogos – Sopa de Letras</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- ESTILO ESPECÍFICO DA SOPA DE LETRAS -->
   <style>
     .sopa-container {
       display: flex;
@@ -27,12 +29,18 @@
       font-weight: 600;
       text-transform: uppercase;
       cursor: pointer;
-      background-color: #f8fafc;
-      transition: background 0.15s ease, color 0.15s ease;
+      background-color: #111827;  /* fundo escuro */
+      color: #f9fafb;             /* LETRAS VISÍVEIS DESDE O INÍCIO */
+      transition: background 0.15s ease, color 0.15s ease, transform 0.08s ease;
+    }
+
+    .sopa-grid td:hover {
+      transform: translateY(-1px);
     }
 
     .sopa-grid td.selecionado {
-      background-color: #bfdbfe;
+      background-color: #4b5563;
+      color: #f9fafb;
     }
 
     .sopa-grid td.certo {
@@ -42,6 +50,7 @@
 
     .sopa-grid td.errado {
       background-color: #fecaca;
+      color: #111827;
     }
 
     .lista-palavras {
@@ -123,8 +132,8 @@
   <section>
     <h2>Jogo – Sopa de Letras Interativa</h2>
     <p>
-      Clica nas letras para formar palavras relacionadas com a indústria têxtil.  
-      Quando terminares, carrega em <strong>Verificar</strong> para ver a grelha com as respostas a verde.
+      Clica nas letras para selecionar quadrados. Procura palavras ligadas à indústria têxtil.  
+      No fim, carrega em <strong>Verificar</strong> para ver os acertos a verde.
     </p>
 
     <div class="sopa-container">
@@ -139,7 +148,7 @@
       </div>
 
       <p class="dica">
-        Dica: as palavras podem estar na horizontal ou vertical, e algumas podem estar ao contrário.
+        As palavras podem estar na horizontal ou vertical, e algumas podem estar ao contrário.
       </p>
 
       <p class="mensagem" id="mensagem"></p>
@@ -152,7 +161,7 @@
 </footer>
 
 <script>
-  // Palavras base (sem acentos, para ser mais simples de verificar)
+  // Palavras (sem acentos, em maiúsculas)
   const PALAVRAS_BASE = [
     "FABRICA",
     "TEAR",
@@ -179,12 +188,10 @@
   const btnNovo = document.getElementById("btnNovo");
   const btnLimpar = document.getElementById("btnLimpar");
 
-  // Função para gerar um número aleatório entre min e max (inclusive)
   function randInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  // Embaralha array
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = randInt(0, i);
@@ -193,7 +200,6 @@
     return array;
   }
 
-  // Cria grelha vazia
   function criarGrelhaVazia() {
     grid = [];
     for (let r = 0; r < GRID_SIZE; r++) {
@@ -205,9 +211,8 @@
     }
   }
 
-  // Tenta colocar uma palavra na grelha
   function colocarPalavra(palavra) {
-    const direcoes = shuffle(["H", "V"]); // H = horizontal, V = vertical
+    const direcoes = shuffle(["H", "V"]);
     const podeInverter = Math.random() < 0.5;
     let palavraColocar = palavra;
 
@@ -229,7 +234,6 @@
           col = randInt(0, GRID_SIZE - 1);
         }
 
-        // Verificar se cabe
         let cabe = true;
         for (let i = 0; i < palavraColocar.length; i++) {
           const r = dir === "H" ? row : row + i;
@@ -244,7 +248,6 @@
 
         if (!cabe) continue;
 
-        // Colocar
         for (let i = 0; i < palavraColocar.length; i++) {
           const r = dir === "H" ? row : row + i;
           const c = dir === "H" ? col + i : col;
@@ -264,7 +267,6 @@
     return false;
   }
 
-  // Preenche espaços vazios com letras aleatórias
   function preencherLetrasAleatorias() {
     const letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     for (let r = 0; r < GRID_SIZE; r++) {
@@ -276,7 +278,6 @@
     }
   }
 
-  // Renderiza grelha no HTML
   function renderGrid() {
     gridEl.innerHTML = "";
     for (let r = 0; r < GRID_SIZE; r++) {
@@ -293,7 +294,6 @@
     }
   }
 
-  // Renderiza lista de palavras
   function renderPalavras() {
     listaEl.innerHTML = "";
     palavrasAtuais.forEach(p => {
@@ -329,14 +329,12 @@
   }
 
   function verificarSelecao() {
-    // Limpa estados anteriores (mas mantém "selecionado" para feedback)
     const tds = gridEl.querySelectorAll("td");
     tds.forEach(td => {
       td.classList.remove("errado", "certo");
     });
     msgEl.textContent = "";
 
-    // Calcula todas as palavras possíveis criadas pela seleção
     const selecionadasPorLinha = {};
     const selecionadasPorColuna = {};
 
@@ -367,12 +365,10 @@
 
           const atualUpper = atual.toUpperCase();
 
-          // Verificar se alguma palavra colocada bate com este pedaço (normal ou invertido)
           palavrasPosicionadas.forEach(info => {
             const alvo = info.palavraColocar.toUpperCase();
             if (atualUpper.endsWith(alvo) || atualUpper.split("").reverse().join("").endsWith(alvo)) {
               palavrasEncontradas.add(info.palavra);
-              // Marcar letras desta sequência como corretas
               const tam = alvo.length;
               const usados = coords.slice(-tam);
               usados.forEach(pos => {
@@ -387,7 +383,6 @@
     processarGrupo(selecionadasPorLinha, true);
     processarGrupo(selecionadasPorColuna, false);
 
-    // Destacar letras corretas e erradas
     tds.forEach(td => {
       const key = td.dataset.row + "-" + td.dataset.col;
       if (letrasCorretas.has(key)) {
@@ -399,7 +394,6 @@
       }
     });
 
-    // Destacar palavras encontradas na lista
     const spans = listaEl.querySelectorAll("span");
     spans.forEach(span => {
       if (palavrasEncontradas.has(span.dataset.palavra)) {
@@ -424,7 +418,6 @@
     palavrasPosicionadas = [];
     msgEl.textContent = "";
 
-    // Escolhe aleatoriamente algumas palavras
     palavrasAtuais = shuffle([...PALAVRAS_BASE]).slice(0, 7);
 
     criarGrelhaVazia();
@@ -432,18 +425,16 @@
     preencherLetrasAleatorias();
     renderGrid();
     renderPalavras();
+    limparSelecaoVisual();
   }
 
   btnVerificar.addEventListener("click", verificarSelecao);
-  btnNovo.addEventListener("click", () => {
-    novoJogo();
-  });
+  btnNovo.addEventListener("click", novoJogo);
   btnLimpar.addEventListener("click", () => {
     selecionadas = [];
     limparSelecaoVisual();
   });
 
-  // Inicia o jogo quando a página carrega
   novoJogo();
 </script>
 </body>
