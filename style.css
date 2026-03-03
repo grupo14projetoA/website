@@ -4,17 +4,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
 :root {
-  --bg-gradient: radial-gradient(circle at top, #27272f 0, #0b0b10 45%, #020617 100%);
-  --panel: rgba(15, 23, 42, 0.82);
-  --panel-soft: rgba(24, 24, 35, 0.78);
-  --border: rgba(248, 250, 252, 0.18);
+  --bg-gradient: radial-gradient(circle at top, #ffffff 0, #f3f4f6 35%, #e5e7eb 100%);
+  --panel: #ffffff;
+  --panel-soft: #f9fafb;
+  --border: #d4d4d8;
   --accent: #f97316;      /* laranja */
-  --accent-soft: #fed7aa;
-  --accent-2: #22c55e;    /* verde */
-  --text: #f9fafb;
-  --text-muted: #a1a1aa;
+  --accent-soft: #ea580c;
+  --accent-2: #16a34a;    /* verde */
+  --text: #111827;
+  --text-muted: #6b7280;
   --radius: 14px;
-  --shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
+  --shadow: 0 12px 30px rgba(15, 23, 42, 0.16);
   --max-width: 1100px;
 }
 
@@ -40,7 +40,7 @@ body {
 }
 
 /* =========================
-   HEADER + NAVBAR (GLASS)
+   HEADER + NAVBAR
    ========================= */
 header {
   position: sticky;
@@ -48,13 +48,13 @@ header {
   z-index: 20;
   background: linear-gradient(
       135deg,
-      rgba(15, 23, 42, 0.96),
-      rgba(15, 23, 42, 0.86)
+      #ffffff,
+      #f9fafb
     );
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
-  box-shadow: var(--shadow);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
 }
 
 header h1 {
@@ -84,21 +84,19 @@ nav a {
   border-radius: 999px;
   font-weight: 500;
   font-size: 0.9rem;
-  background: rgba(15, 23, 42, 0.78);
-  border: 1px solid rgba(248, 250, 252, 0.06);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.5);
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.06);
   transition: background 0.2s ease, color 0.2s ease, transform 0.12s ease,
     box-shadow 0.12s ease, border-color 0.2s ease;
 }
 
 nav a:hover {
-  background: rgba(15, 23, 42, 0.98);
+  background: #ffffff;
   color: var(--accent-soft);
-  border-color: rgba(248, 250, 252, 0.3);
+  border-color: #cbd5f5;
   transform: translateY(-1px);
-  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.65);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
 }
 
 /* Responsivo */
@@ -109,7 +107,7 @@ nav a:hover {
 }
 
 /* =========================
-   MAIN / SEÇÕES (PAINÉIS)
+   MAIN / SEÇÕES
    ========================= */
 main {
   max-width: var(--max-width);
@@ -128,13 +126,11 @@ section {
       var(--panel-soft)
     );
   border: 1px solid var(--border);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
   box-shadow: var(--shadow);
   overflow: hidden;
 }
 
-/* brilho decorativo */
+/* brilho decorativo suave */
 section::before {
   content: "";
   position: absolute;
@@ -142,8 +138,8 @@ section::before {
   right: -40px;
   width: 160px;
   height: 160px;
-  background: radial-gradient(circle, rgba(248, 250, 252, 0.13), transparent);
-  opacity: 0.9;
+  background: radial-gradient(circle, rgba(248, 250, 252, 0.9), transparent);
+  opacity: 0.5;
 }
 
 /* barra colorida junto ao título */
@@ -226,8 +222,8 @@ img {
   border-radius: 12px;
   display: block;
   margin: 10px auto 0;
-  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(248, 250, 252, 0.12);
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.25);
+  border: 1px solid #e5e7eb;
 }
 
 /* =========================
@@ -245,7 +241,7 @@ main a:hover {
 }
 
 /* =========================
-   SOPA DE LETRAS (para jogos.html)
+   SOPA DE LETRAS (jogos.html)
    ========================= */
 .sopa-container {
   display: flex;
@@ -265,22 +261,23 @@ main a:hover {
   height: 32px;
   text-align: center;
   vertical-align: middle;
-  border: 1px solid rgba(248, 250, 252, 0.25);
+  border: 1px solid #cbd5e1;
   font-weight: 600;
   text-transform: uppercase;
   cursor: pointer;
-  background-color: rgba(15, 23, 42, 0.9);
-  color: #f9fafb; /* letras sempre visíveis */
+  background-color: #ffffff;
+  color: #111827;
   transition: background 0.15s ease, color 0.15s ease, transform 0.08s ease;
 }
 
 .sopa-grid td:hover {
   transform: translateY(-1px);
+  background-color: #e5e7eb;
 }
 
 .sopa-grid td.selecionado {
-  background-color: #4b5563;
-  color: #f9fafb;
+  background-color: #bfdbfe;
+  color: #1f2937;
 }
 
 .sopa-grid td.certo {
@@ -302,14 +299,14 @@ main a:hover {
 }
 
 .lista-palavras span {
-  background: rgba(24, 24, 35, 0.85);
+  background: #e5f0ff;
   border-radius: 999px;
   padding: 4px 10px;
   font-size: 0.85rem;
   font-weight: 600;
   text-transform: uppercase;
-  color: var(--accent-soft);
-  border: 1px solid rgba(248, 250, 252, 0.18);
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
 }
 
 .lista-palavras span.encontrada {
@@ -335,21 +332,21 @@ main a:hover {
 .botoes-jogo button {
   padding: 6px 14px;
   border-radius: 999px;
-  border: 1px solid rgba(248, 250, 252, 0.25);
-  background: rgba(24, 24, 35, 0.9);
-  color: var(--text);
+  border: 1px solid #d4d4d8;
+  background: #f3f4f6;
+  color: #111827;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
   transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.1s ease,
     border-color 0.2s ease;
 }
 
 .botoes-jogo button:hover {
-  background: rgba(15, 23, 42, 1);
-  border-color: var(--accent-soft);
+  background: #e5e7eb;
+  border-color: #cbd5f5;
   transform: translateY(-1px);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.18);
 }
 
 .mensagem {
@@ -363,10 +360,8 @@ main a:hover {
    FOOTER
    ========================= */
 footer {
-  background: rgba(3, 7, 18, 0.96);
+  background: #f3f4f6;
   border-top: 1px solid var(--border);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
 }
 
 footer p {
