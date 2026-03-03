@@ -281,3 +281,27 @@ footer p {
     font-size: 0.93rem;
   }
 }
+
+/* Garante que o texto da sopa de letras é sempre visível */
+.sopa-grid td {
+  color: #f9fafb;          /* texto claro */
+  background-color: #18181b; /* fundo escuro visível */
+}
+
+/* Quando está selecionado (antes de verificar) */
+.sopa-grid td.selecionado {
+  background-color: #4b5563;
+  color: #f9fafb;
+}
+
+/* Corretos a verde */
+.sopa-grid td.certo {
+  background-color: #22c55e;
+  color: #ffffff;
+}
+
+/* Errados a vermelho claro */
+.sopa-grid td.errado {
+  background-color: #fecaca;
+  color: #111827;
+}
