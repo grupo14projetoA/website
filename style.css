@@ -3,6 +3,41 @@
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
 
+/* RESET DE CORES FORÇADO */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* header e nav totalmente claros */
+header {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+nav {
+  background: #ffffff !important;
+}
+
+nav a {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #cccccc !important;
+}
+
+/* cartões/sections brancos com texto preto */
+section {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+
 :root {
   --bg: #f3f4f6;
   --bg-alt: #ffffff;
