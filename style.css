@@ -4,18 +4,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
 :root {
-  --bg: #171717;
-  --bg-gradient: radial-gradient(circle at top, #3f3f46 0, #18181b 40%, #020617 100%);
-  --glass: rgba(24, 24, 27, 0.78);
-  --glass-soft: rgba(39, 39, 42, 0.78);
-  --border: rgba(250, 250, 250, 0.18);
+  --bg-gradient: radial-gradient(circle at top, #27272f 0, #0b0b10 45%, #020617 100%);
+  --panel: rgba(15, 23, 42, 0.82);
+  --panel-soft: rgba(24, 24, 35, 0.78);
+  --border: rgba(248, 250, 252, 0.18);
   --accent: #f97316;      /* laranja */
   --accent-soft: #fed7aa;
   --accent-2: #22c55e;    /* verde */
   --text: #f9fafb;
   --text-muted: #a1a1aa;
   --radius: 14px;
-  --shadow-glass: 0 18px 40px rgba(0, 0, 0, 0.6);
+  --shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
   --max-width: 1100px;
 }
 
@@ -41,7 +40,7 @@ body {
 }
 
 /* =========================
-   HEADER + NAVBAR (VIDRO)
+   HEADER + NAVBAR (GLASS)
    ========================= */
 header {
   position: sticky;
@@ -49,20 +48,20 @@ header {
   z-index: 20;
   background: linear-gradient(
       135deg,
-      rgba(24, 24, 27, 0.92),
-      rgba(24, 24, 27, 0.8)
+      rgba(15, 23, 42, 0.96),
+      rgba(15, 23, 42, 0.86)
     );
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
-  box-shadow: var(--shadow-glass);
+  box-shadow: var(--shadow);
 }
 
 header h1 {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 10px 18px 0;
-  font-size: 1.4rem;
+  font-size: 1.45rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--accent-soft);
@@ -71,8 +70,8 @@ header h1 {
 /* NAV */
 nav {
   max-width: var(--max-width);
-  margin: 4px auto 8px;
-  padding: 8px 18px 12px;
+  margin: 4px auto 10px;
+  padding: 8px 18px 14px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -85,32 +84,32 @@ nav a {
   border-radius: 999px;
   font-weight: 500;
   font-size: 0.9rem;
-  background: rgba(39, 39, 42, 0.7);
-  border: 1px solid rgba(250, 250, 250, 0.06);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(248, 250, 252, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.5);
   transition: background 0.2s ease, color 0.2s ease, transform 0.12s ease,
     box-shadow 0.12s ease, border-color 0.2s ease;
 }
 
 nav a:hover {
-  background: rgba(24, 24, 27, 0.95);
+  background: rgba(15, 23, 42, 0.98);
   color: var(--accent-soft);
   border-color: rgba(248, 250, 252, 0.3);
   transform: translateY(-1px);
-  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.65);
 }
 
 /* Responsivo */
 @media (max-width: 720px) {
   header h1 {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
 }
 
 /* =========================
-   MAIN / SEÇÕES (CARTÕES VIDRO)
+   MAIN / SEÇÕES (PAINÉIS)
    ========================= */
 main {
   max-width: var(--max-width);
@@ -125,35 +124,35 @@ section {
   border-radius: var(--radius);
   background: linear-gradient(
       145deg,
-      rgba(24, 24, 27, 0.88),
-      rgba(24, 24, 27, 0.75)
+      var(--panel),
+      var(--panel-soft)
     );
   border: 1px solid var(--border);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: var(--shadow-glass);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  box-shadow: var(--shadow);
   overflow: hidden;
 }
 
-/* detalhe decorativo em cima da secção */
+/* brilho decorativo */
 section::before {
   content: "";
   position: absolute;
   top: -40px;
   right: -40px;
-  width: 140px;
-  height: 140px;
-  background: radial-gradient(circle, rgba(248, 250, 252, 0.12), transparent);
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(248, 250, 252, 0.13), transparent);
   opacity: 0.9;
 }
 
-/* pequena barra colorida à esquerda do título */
+/* barra colorida junto ao título */
 section::after {
   content: "";
   position: absolute;
   top: 18px;
   left: 18px;
-  width: 40px;
+  width: 42px;
   height: 3px;
   border-radius: 999px;
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
@@ -163,7 +162,7 @@ section::after {
    TÍTULOS E TEXTO
    ========================= */
 h2 {
-  font-size: 1.4rem;
+  font-size: 1.45rem;
   color: var(--accent-soft);
   margin-bottom: 8px;
   padding-left: 4px;
@@ -228,7 +227,7 @@ img {
   display: block;
   margin: 10px auto 0;
   box-shadow: 0 16px 35px rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(250, 250, 250, 0.1);
+  border: 1px solid rgba(248, 250, 252, 0.12);
 }
 
 /* =========================
@@ -246,13 +245,128 @@ main a:hover {
 }
 
 /* =========================
+   SOPA DE LETRAS (para jogos.html)
+   ========================= */
+.sopa-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.sopa-grid {
+  border-collapse: collapse;
+  margin-top: 10px;
+  user-select: none;
+}
+
+.sopa-grid td {
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid rgba(248, 250, 252, 0.25);
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  background-color: rgba(15, 23, 42, 0.9);
+  color: #f9fafb; /* letras sempre visíveis */
+  transition: background 0.15s ease, color 0.15s ease, transform 0.08s ease;
+}
+
+.sopa-grid td:hover {
+  transform: translateY(-1px);
+}
+
+.sopa-grid td.selecionado {
+  background-color: #4b5563;
+  color: #f9fafb;
+}
+
+.sopa-grid td.certo {
+  background-color: #22c55e;
+  color: #ffffff;
+}
+
+.sopa-grid td.errado {
+  background-color: #fecaca;
+  color: #111827;
+}
+
+.lista-palavras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.lista-palavras span {
+  background: rgba(24, 24, 35, 0.85);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+  border: 1px solid rgba(248, 250, 252, 0.18);
+}
+
+.lista-palavras span.encontrada {
+  background: #22c55e;
+  color: #ffffff;
+}
+
+.dica {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 6px;
+}
+
+.botoes-jogo {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.botoes-jogo button {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(248, 250, 252, 0.25);
+  background: rgba(24, 24, 35, 0.9);
+  color: var(--text);
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
+  transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.1s ease,
+    border-color 0.2s ease;
+}
+
+.botoes-jogo button:hover {
+  background: rgba(15, 23, 42, 1);
+  border-color: var(--accent-soft);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.7);
+}
+
+.mensagem {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* =========================
    FOOTER
    ========================= */
 footer {
-  background: rgba(12, 12, 16, 0.96);
+  background: rgba(3, 7, 18, 0.96);
   border-top: 1px solid var(--border);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 footer p {
@@ -280,28 +394,4 @@ footer p {
   p {
     font-size: 0.93rem;
   }
-}
-
-/* Garante que o texto da sopa de letras é sempre visível */
-.sopa-grid td {
-  color: #f9fafb;          /* texto claro */
-  background-color: #18181b; /* fundo escuro visível */
-}
-
-/* Quando está selecionado (antes de verificar) */
-.sopa-grid td.selecionado {
-  background-color: #4b5563;
-  color: #f9fafb;
-}
-
-/* Corretos a verde */
-.sopa-grid td.certo {
-  background-color: #22c55e;
-  color: #ffffff;
-}
-
-/* Errados a vermelho claro */
-.sopa-grid td.errado {
-  background-color: #fecaca;
-  color: #111827;
 }
