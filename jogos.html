@@ -29,8 +29,8 @@
       font-weight: 600;
       text-transform: uppercase;
       cursor: pointer;
-      background-color: #111827;  /* fundo escuro */
-      color: #f9fafb;             /* LETRAS VISÍVEIS DESDE O INÍCIO */
+      background-color: #111827;
+      color: #f9fafb; /* letras visíveis logo */
       transition: background 0.15s ease, color 0.15s ease, transform 0.08s ease;
     }
 
@@ -117,13 +117,13 @@
 </head>
 <body>
 <header>
-  <h1>Indústria Têxtil na Revolução Industrial</h1>
+  <h1>Indústria Têxtil e Revolução Industrial</h1>
   <nav>
     <a href="index.html">Início</a>
     <a href="maquinas.html">Máquinas e Inovações</a>
     <a href="fabricas.html">Fábricas e Trabalhadores</a>
-    <a href="impactos.html">Impactos Sociais e Económicos</a>
-    <a href="hoje.html">Hoje e Curiosidades</a>
+    <a href="portugal.html">Revolução Industrial em Portugal</a>
+    <a href="hoje.html">Hoje e Legado</a>
     <a href="jogos.html">Jogos</a>
   </nav>
 </header>
@@ -132,8 +132,8 @@
   <section>
     <h2>Jogo – Sopa de Letras Interativa</h2>
     <p>
-      Clica nas letras para selecionar quadrados. Procura palavras ligadas à indústria têxtil.  
-      No fim, carrega em <strong>Verificar</strong> para ver os acertos a verde.
+      Procura na sopa de letras palavras ligadas à Revolução Industrial em Portugal e à indústria têxtil.
+      No fim, clica em <strong>Verificar</strong> para ver os acertos a verde.
     </p>
 
     <div class="sopa-container">
@@ -148,7 +148,7 @@
       </div>
 
       <p class="dica">
-        As palavras podem estar na horizontal ou vertical, e algumas podem estar ao contrário.
+        As palavras podem estar na horizontal ou vertical, e algumas podem aparecer ao contrário.
       </p>
 
       <p class="mensagem" id="mensagem"></p>
@@ -161,21 +161,28 @@
 </footer>
 
 <script>
-  // Palavras (sem acentos, em maiúsculas)
+  // Palavras (SEM acentos, em maiúsculas) – ligadas ao teu conteúdo
   const PALAVRAS_BASE = [
+    "TEXTIL",     // indústria têxtil
+    "FIAÇÃO",     // vou usar sem acento: FIAÇÃO -> FIAÇAO -> FIACAO
+    "FIACAO",
     "FABRICA",
-    "TEAR",
-    "ALGODAO",
-    "REVOLUCAO",
-    "LUDITAS",
+    "OPERARIO",
+    "VAPOR",
+    "METHUEN",
+    "PORTO",
+    "LISBOA",
+    "VALEDOAVE",
+    "SANTOTIRSO",
     "CRIANCA",
-    "TRABALHO",
-    "FIO",
-    "MULE",
-    "JENNY"
+    "MULHER",
+    "COMBOIO"
   ];
 
-  const GRID_SIZE = 12;
+  // Filtrar duplicada (FIAÇÃO / FIACAO) e garantir sem caracteres estranhos
+  const PALAVRAS_LIMPAS = Array.from(new Set(PALAVRAS_BASE.map(p => p.replace(/[^A-Z]/g, ""))));
+
+  const GRID_SIZE = 14;
   let grid = [];
   let selecionadas = [];
   let palavrasPosicionadas = [];
@@ -222,7 +229,7 @@
 
     for (const dir of direcoes) {
       let tentativas = 0;
-      while (tentativas < 50) {
+      while (tentativas < 80) {
         tentativas++;
         let row, col;
 
@@ -402,7 +409,7 @@
     });
 
     if (palavrasEncontradas.size === 0) {
-      msgEl.textContent = "Ainda não encontraste nenhuma palavra completa. Continua a tentar!";
+      msgEl.textContent = "Ainda não encontraste nenhuma palavra completa. Tenta outra vez!";
       msgEl.style.color = "#b91c1c";
     } else if (palavrasEncontradas.size < palavrasAtuais.length) {
       msgEl.textContent = "Boa! Já encontraste: " + Array.from(palavrasEncontradas).join(", ");
@@ -418,7 +425,8 @@
     palavrasPosicionadas = [];
     msgEl.textContent = "";
 
-    palavrasAtuais = shuffle([...PALAVRAS_BASE]).slice(0, 7);
+    // Escolhe 8 palavras aleatórias da lista limpa
+    palavrasAtuais = shuffle([...PALAVRAS_LIMPAS]).slice(0, 8);
 
     criarGrelhaVazia();
     palavrasAtuais.forEach(p => colocarPalavra(p));
