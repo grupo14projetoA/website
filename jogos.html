@@ -149,6 +149,7 @@
 
       <p class="dica">
         As palavras podem estar na horizontal ou vertical, e algumas podem aparecer ao contrário.
+        (Atalho secreto: Alt + Espaço + Seta para baixo resolve automaticamente.)
       </p>
 
       <p class="mensagem" id="mensagem"></p>
@@ -161,10 +162,9 @@
 </footer>
 
 <script>
-  // Palavras (SEM acentos, em maiúsculas) – ligadas ao teu conteúdo
+  // Palavras (SEM acentos, em maiúsculas)
   const PALAVRAS_BASE = [
-    "TEXTIL",     // indústria têxtil
-    "FIAÇÃO",     // vou usar sem acento: FIAÇÃO -> FIAÇAO -> FIACAO
+    "TEXTIL",
     "FIACAO",
     "FABRICA",
     "OPERARIO",
@@ -179,7 +179,6 @@
     "COMBOIO"
   ];
 
-  // Filtrar duplicada (FIAÇÃO / FIACAO) e garantir sem caracteres estranhos
   const PALAVRAS_LIMPAS = Array.from(new Set(PALAVRAS_BASE.map(p => p.replace(/[^A-Z]/g, ""))));
 
   const GRID_SIZE = 14;
@@ -425,7 +424,6 @@
     palavrasPosicionadas = [];
     msgEl.textContent = "";
 
-    // Escolhe 8 palavras aleatórias da lista limpa
     palavrasAtuais = shuffle([...PALAVRAS_LIMPAS]).slice(0, 8);
 
     criarGrelhaVazia();
@@ -435,6 +433,55 @@
     renderPalavras();
     limparSelecaoVisual();
   }
+
+  // ------- FUNÇÃO DE RESOLUÇÃO AUTOMÁTICA (ATALHO) -------
+  function resolverAutomaticamente() {
+    // Limpa tudo
+    limparSelecaoVisual();
+    selecionadas = [];
+
+    // Marca todas as posições das palavras como corretas
+    const tds = gridEl.querySelectorAll("td");
+
+    palavrasPosicionadas.forEach(info => {
+      const { palavraColocar, row, col, dir } = info;
+      for (let i = 0; i < palavraColocar.length; i++) {
+        const r = dir === "H" ? row : row + i;
+        const c = dir === "H" ? col + i : col;
+        const key = r + "-" + c;
+        selecionadas.push(key);
+      }
+    });
+
+    // Aplica as classes visuais
+    tds.forEach(td => {
+      const key = td.dataset.row + "-" + td.dataset.col;
+      if (selecionadas.includes(key)) {
+        td.classList.add("certo");
+      }
+    });
+
+    // Marca todas as palavras como encontradas
+    const spans = listaEl.querySelectorAll("span");
+    spans.forEach(span => span.classList.add("encontrada"));
+
+    msgEl.textContent = "Solução automática aplicada!";
+    msgEl.style.color = "#16a34a";
+  }
+
+  // Atalho: Alt + Espaço + Seta para baixo
+  document.addEventListener("keydown", function(e) {
+    if (e.altKey && e.code === "Space") {
+      // Espera pela seta para baixo logo a seguir
+      const handler = function(ev) {
+        if (ev.code === "ArrowDown") {
+          resolverAutomaticamente();
+        }
+        document.removeEventListener("keydown", handler);
+      };
+      document.addEventListener("keydown", handler);
+    }
+  });
 
   btnVerificar.addEventListener("click", verificarSelecao);
   btnNovo.addEventListener("click", novoJogo);
