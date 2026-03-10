@@ -3,22 +3,21 @@
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
 
-/* RESET DE CORES FORÇADO */
+/* RESET DE CORES FORÇADO – TUDO TEXTO PRETO */
 * {
   box-sizing: border-box;
+  color: #000000 !important;   /* força texto preto em tudo */
 }
 
 html, body {
   margin: 0;
   padding: 0;
   background: #ffffff !important;
-  color: #000000 !important;
 }
 
 /* header e nav totalmente claros */
 header {
   background: #ffffff !important;
-  color: #000000 !important;
 }
 
 nav {
@@ -27,13 +26,379 @@ nav {
 
 nav a {
   background: #ffffff !important;
-  color: #000000 !important;
   border: 1px solid #cccccc !important;
 }
 
-/* cartões/sections brancos com texto preto */
+/* cartões/sections brancos */
 section {
   background: #ffffff !important;
+}
+
+/* =========================
+   VARIÁVEIS – NÃO USAR MAIS CORES DE TEXTO
+   ========================= */
+:root {
+  --bg: #f3f4f6;
+  --bg-alt: #ffffff;
+  --primary: #f97316;      /* laranja */
+  --primary-dark: #000000; /* agora preto */
+  --accent: #16a34a;       /* verde */
+  --text: #000000;         /* TEXTO PRETO */
+  --text-light: #000000;   /* TEXTO “CLARO” TAMBÉM PRETO */
+  --border: #e5e7eb;
+  --shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+  --radius: 12px;
+  --max-width: 1100px;
+}
+
+/* Reset básico (sem mexer na cor) */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================
+   BASE
+   ========================= */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Nunito', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: radial-gradient(circle at top, #ffffff 0, #f3f4f6 40%, #e5e7eb 100%);
+  color: #000000;
+}
+
+/* =========================
+   HEADER + NAVBAR
+   ========================= */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: #ffffff;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+}
+
+header h1 {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 10px 18px 0;
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #000000;    /* título preto */
+}
+
+/* NAV */
+nav {
+  max-width: var(--max-width);
+  margin: 4px auto 10px;
+  padding: 8px 18px 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+nav a {
+  color: #000000;
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 3px 8px rgba(15, 23, 42, 0.08);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.12s ease,
+    box-shadow 0.12s ease, border-color 0.2s ease;
+}
+
+nav a:hover {
+  background: #ffffff;
+  color: #000000;     /* hover preto */
+  border-color: #fed7aa;
+  transform: translateY(-1px);
+  box-shadow: 0 7px 14px rgba(15, 23, 42, 0.14);
+}
+
+/* Responsivo */
+@media (max-width: 720px) {
+  header h1 {
+    font-size: 1.15rem;
+  }
+}
+
+/* =========================
+   MAIN / SEÇÕES
+   ========================= */
+main {
+  max-width: var(--max-width);
+  margin: 26px auto 40px;
+  padding: 0 18px;
+}
+
+section {
+  position: relative;
+  margin-bottom: 22px;
+  padding: 22px 22px 20px;
+  border-radius: var(--radius);
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* barra colorida junto ao título */
+section::after {
+  content: "";
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  width: 42px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+/* =========================
+   TÍTULOS E TEXTO
+   ========================= */
+h2 {
+  font-size: 1.4rem;
+  color: #000000;
+  margin-bottom: 8px;
+  padding-left: 4px;
+}
+
+h3 {
+  font-size: 1.1rem;
+  color: #000000;
+  margin-top: 12px;
+  margin-bottom: 4px;
+}
+
+p {
+  font-size: 0.96rem;
+  color: #000000;
+  margin-bottom: 9px;
+}
+
+p + p {
+  margin-top: 2px;
+}
+
+.sub {
+  font-size: 0.88rem;
+  color: #000000;  /* subtítulo também preto */
+}
+
+/* =========================
+   LISTAS
+   ========================= */
+ul {
+  list-style: none;
+  margin-top: 8px;
+}
+
+ul li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 6px;
+  color: #000000;
+  font-size: 0.95rem;
+}
+
+ul li::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: radial-gradient(circle, var(--primary), var(--accent));
+}
+
+/* =========================
+   IMAGENS
+   ========================= */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  margin: 10px auto 0;
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.2);
+  border: 1px solid #e5e7eb;
+}
+
+/* =========================
+   LINKS NO CONTEÚDO
+   ========================= */
+main a {
+  color: #000000;          /* links pretos */
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+}
+
+main a:hover {
+  color: #000000;          /* hover também preto */
+}
+
+/* =========================
+   SOPA DE LETRAS (jogos.html)
+   ========================= */
+.sopa-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.sopa-grid {
+  border-collapse: collapse;
+  margin-top: 10px;
+  user-select: none;
+}
+
+.sopa-grid td {
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #cbd5e1;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #000000;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.08s ease;
+}
+
+.sopa-grid td:hover {
+  transform: translateY(-1px);
+  background-color: #e5e7eb;
+}
+
+.sopa-grid td.selecionado {
+  background-color: #bfdbfe;
+  color: #000000;
+}
+
+.sopa-grid td.certo {
+  background-color: #22c55e;
+  color: #ffffff;
+}
+
+.sopa-grid td.errado {
+  background-color: #fecaca;
+  color: #000000;
+}
+
+.lista-palavras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.lista-palavras span {
+  background: #e5f0ff;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #000000;
+  border: 1px solid #bfdbfe;
+}
+
+.lista-palavras span.encontrada {
+  background: #22c55e;
+  color: #ffffff;
+}
+
+.dica {
+  font-size: 0.9rem;
+  color: #000000;
+}
+
+.botoes-jogo {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.botoes-jogo button {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid #d4d4d8;
+  background: #f3f4f6;
+  color: #000000;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+  transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.1s ease,
+    border-color 0.2s ease;
+}
+
+.botoes-jogo button:hover {
+  background: #e5e7eb;
+  border-color: #fed7aa;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.18);
+}
+
+.mensagem {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  text-align: center;
+  font-weight: 600;
+  color: #000000;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+footer {
+  background: #f3f4f6;
+  border-top: 1px solid var(--border);
+}
+
+footer p {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 14px 18px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #000000;
+}
+
+/* =========================
+   RESPONSIVO EXTRA
+   ========================= */
+@media (max-width: 480px) {
+  main {
+    padding: 0 12px;
+  }
+  section {
+    padding: 18px 16px 16px;
+  }
+  h2 {
+    font-size: 1.25rem;
+  }
+  p {
+    font-size: 0.93rem;
+  }
+}
   color: #000000 !important;
 }
 
