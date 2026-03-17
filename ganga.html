@@ -2,8 +2,50 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <title>Ganga – Da Fábrica às Calças de Ganga</title>
+  <title>Ganga</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .cards-ganga {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .card-ganga {
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      padding: 12px 14px;
+      background: #ffffff;
+      box-shadow: 0 4px 10px rgba(15,23,42,0.08);
+    }
+    .card-ganga h3 {
+      margin-bottom: 4px;
+    }
+    .quiz {
+      margin-top: 10px;
+    }
+    .quiz p {
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .quiz button {
+      margin-top: 6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid #d4d4d8;
+      background: #f3f4f6;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+    .quiz button:hover {
+      background: #e5e7eb;
+    }
+    .quiz-result {
+      margin-top: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+  </style>
 </head>
 <body>
 <header>
@@ -21,73 +63,102 @@
 
 <main>
   <section>
-    <h2>O que é a ganga?</h2>
+    <h2>Ganga em 3 ideias</h2>
+    <div class="cards-ganga">
+      <div class="card-ganga">
+        <h3>O que é?</h3>
+        <p>
+          Ganga (denim) é um tecido em sarja, normalmente de algodão, muito resistente, usado
+          primeiro como roupa de trabalho e hoje em calças, casacos e muito mais.
+        </p>
+      </div>
+      <div class="card-ganga">
+        <h3>De onde vem?</h3>
+        <p>
+          O nome “denim” vem de <em>serge de Nîmes</em>, um tecido forte produzido em Nîmes, em França.
+          No século XIX, fábricas alimentadas por máquinas a vapor ajudaram a espalhar a ganga.
+        </p>
+      </div>
+      <div class="card-ganga">
+        <h3>Jeans famosos</h3>
+        <p>
+          Levi Strauss e Jacob Davis criaram, em 1873, as calças de ganga com rebites metálicos,
+          pensadas para operários e mineiros – e depois tornaram-se moda em todo o mundo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Ganga & Revolução Industrial</h2>
     <p>
-      A ganga, também conhecida por <strong>denim</strong>, é um tecido resistente em sarja, normalmente feito de algodão,
-      tingido com corante azul índigo. Foi pensada originalmente para roupa de trabalho, por ser barata,
-      dura e difícil de rasgar.[web:72][web:75]
+      A ganga faz parte da história da indústria têxtil: fábricas, máquinas a vapor e depois eletricidade
+      permitiram produzir grandes quantidades de tecido resistente e barato, ideal para roupa de trabalho.
     </p>
     <p>
-      O nome “denim” vem da expressão francesa <em>serge de Nîmes</em>, um tecido forte produzido na cidade de Nîmes,
-      em França, que acabou abreviado para “denim”.[web:73][web:79][web:81]
+      Hoje, fábricas em países como Portugal continuam a produzir ganga e jeans para marcas internacionais.
+      Ou seja, a ligação entre a Revolução Industrial e a ganga ainda existe.
     </p>
   </section>
 
   <section>
-    <h2>Ganga na época da Revolução Industrial</h2>
-    <p>
-      Durante o século XIX, com a Revolução Industrial e o desenvolvimento da indústria têxtil, a ganga começou
-      a ser produzida em grandes fábricas, usando máquinas de fiar e de tecer movidas a vapor e, mais tarde,
-      por motores de combustão e eletricidade.[web:72][web:75][web:81]
-    </p>
-    <p>
-      A ganga era especialmente usada para roupas de trabalho, como calças e jardineiras de operários, mineiros,
-      agricultores e cowboys, devido à sua resistência e durabilidade.[web:72][web:75][web:78]
-    </p>
-  </section>
+    <h2>Mini‑quiz da ganga</h2>
+    <div class="quiz" id="quiz">
+      <div class="pergunta" data-correta="b">
+        <p>1. A ganga foi usada primeiro como…</p>
+        <label><input type="radio" name="q1" value="a"> Roupa de festa</label><br>
+        <label><input type="radio" name="q1" value="b"> Roupa de trabalho</label><br>
+        <label><input type="radio" name="q1" value="c"> Fato de banho</label>
+      </div>
 
-  <section>
-    <h2>Levi Strauss, Jacob Davis e as calças de ganga</h2>
-    <p>
-      Em meados do século XIX, nos Estados Unidos, o comerciante <strong>Levi Strauss</strong> e o alfaiate <strong>Jacob Davis</strong>
-      perceberam que os trabalhadores precisavam de calças ainda mais resistentes. Davis começou a reforçar os bolsos
-      e outras partes frágeis com <strong>rebites metálicos</strong>.[web:72][web:75][web:78][web:81]
-    </p>
-    <p>
-      Em 1873, Levi Strauss e Jacob Davis registaram a patente das calças de ganga com rebites, dando origem às
-      famosas calças de ganga que conhecemos hoje.[web:72][web:75][web:78][web:81] Estas calças tornaram-se um ícone da
-      roupa de trabalho e, mais tarde, da moda.
-    </p>
-  </section>
+      <div class="pergunta" data-correta="c" style="margin-top:10px;">
+        <p>2. O nome “denim” vem de…</p>
+        <label><input type="radio" name="q2" value="a"> Uma cidade inglesa</label><br>
+        <label><input type="radio" name="q2" value="b"> Um tipo de carvão</label><br>
+        <label><input type="radio" name="q2" value="c"> O tecido “serge de Nîmes”</label>
+      </div>
 
-  <section>
-    <h2>Da roupa de trabalho à moda</h2>
-    <p>
-      No início do século XX, a ganga continuou a ser principalmente um tecido de trabalho. Com o tempo, especialmente
-      após a Segunda Guerra Mundial, as calças de ganga passaram a ser usadas por jovens como símbolo de rebeldia,
-      liberdade e estilo.[web:73][web:75][web:78]
-    </p>
-    <p>
-      Hoje, a ganga é um dos tecidos mais populares do mundo: está presente em calças, casacos, saias, camisas e muitos
-      outros tipos de roupa, em diferentes cores, lavagens e cortes.[web:72][web:75][web:78]
-    </p>
-  </section>
+      <div class="pergunta" data-correta="a" style="margin-top:10px;">
+        <p>3. Levi Strauss ficou conhecido por…</p>
+        <label><input type="radio" name="q3" value="a"> Calças de ganga com rebites</label><br>
+        <label><input type="radio" name="q3" value="b"> Inventar a máquina a vapor</label><br>
+        <label><input type="radio" name="q3" value="c"> Criar o primeiro comboio</label>
+      </div>
 
-  <section>
-    <h2>Ganga e Portugal</h2>
-    <p>
-      Portugal é atualmente um dos produtores importantes de ganga e de calças de ganga na Europa, com várias fábricas
-      especializadas em denim e em acabamentos sustentáveis.[web:74][web:77][web:80] Muitas marcas internacionais produzem ou
-      lavam os seus jeans em fábricas portuguesas, conhecidas pela qualidade e pelo controlo ambiental.
-    </p>
-    <p>
-      Assim, a ligação entre a Revolução Industrial, a indústria têxtil e a ganga continua viva, tanto na história
-      como na economia atual.
-    </p>
+      <button type="button" id="btnCorrigir">Ver resultado</button>
+      <div class="quiz-result" id="quizResult"></div>
+    </div>
   </section>
 </main>
 
 <footer>
 </footer>
+
+<script>
+  const btnCorrigir = document.getElementById('btnCorrigir');
+  const quizResult = document.getElementById('quizResult');
+
+  btnCorrigir.addEventListener('click', () => {
+    const perguntas = document.querySelectorAll('.pergunta');
+    let certas = 0;
+
+    perguntas.forEach((p, index) => {
+      const correta = p.dataset.correta;
+      const nome = 'q' + (index + 1);
+      const escolhido = document.querySelector('input[name="' + nome + '"]:checked');
+      if (escolhido && escolhido.value === correta) {
+        certas++;
+      }
+    });
+
+    if (certas === perguntas.length) {
+      quizResult.textContent = 'Perfeito! Acertaste todas 🎉';
+      quizResult.style.color = '#16a34a';
+    } else {
+      quizResult.textContent = 'Acertaste ' + certas + ' em ' + perguntas.length + '. Tenta melhorar!';
+      quizResult.style.color = '#b91c1c';
+    }
+  });
+</script>
 </body>
 </html>
